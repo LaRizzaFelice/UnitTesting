@@ -1,7 +1,8 @@
 package ex01_arrays;
-
+import java.util.ArrayList;
 import java.util.Arrays;
-
+import java.util.Collection;
+import java.util.HashMap;
 public class ArrayOfInts {
     public int sumOfInts(int[] arrayOfInts) {
         if (arrayOfInts == null) return 0;
@@ -15,7 +16,6 @@ public class ArrayOfInts {
         if (arrayOfInts == null) return 0;
         int[] copy = Arrays.copyOf(arrayOfInts, arrayOfInts.length);
         Arrays.sort(copy);
-
         return sumOfInts(Arrays.copyOf(copy, 3));
     }
 
@@ -30,14 +30,31 @@ public class ArrayOfInts {
 
     public int sumOfXLargest(int[] arrayOfInts, int x) {
         if (arrayOfInts == null) return 0;
-//        if (x > arrayOfInts.length) x = arrayOfInts.length;
         int[] copy = Arrays.copyOf(arrayOfInts, arrayOfInts.length);
         Arrays.sort(copy);
+        return sumOfInts(Arrays.copyOfRange(copy,Math.max(0,copy.length-x),copy.length));
+    }
+    public int countMostPopularNumber(int[] arrayOfInts) {
+        if (arrayOfInts == null) return 0;
+        HashMap<Integer, Integer> counter = new HashMap<Integer, Integer>();
+//        for (Integer i :arrayOfInts){
+//            counter.put(i, 0);
+//        }
+//
+//        for (Integer i : arrayOfInts){
+//            counter.put(i, counter.get(i)+1);
+//        }
 
-        return sumOfInts(Arrays.copyOfRange(copy,Math.max(0,copy.length-x), copy.length ));
+
+        for (Integer i : arrayOfInts) {
+            counter.put(i, counter.getOrDefault(i, 0) + 1);}
+        Collection<Integer> values = counter.values();
+        int max = 0;
+        for (Integer v : values) if (v>max) max = v;
+        return max;
     }
 
-    public static void main(String[] args) {
+    public static void main (String[]args) {
         ArrayOfInts ex1 = new ArrayOfInts();
         int result = ex1.sumOfInts(new int[]{1, 2, 3, 4});
         System.out.println(result);
