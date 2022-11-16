@@ -8,6 +8,7 @@ class ArrayOfIntsSumTest {
 
     private final ArrayOfInts arrayOfInts = new ArrayOfInts();
 
+
     @Test
     void happyflow() {
         int result = arrayOfInts.sumOfInts(new int[]{1, 2, 3, 4});
