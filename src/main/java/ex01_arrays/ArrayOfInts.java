@@ -15,6 +15,7 @@ public class ArrayOfInts {
         if (arrayOfInts == null) return 0;
         int[] copy = Arrays.copyOf(arrayOfInts, arrayOfInts.length);
         Arrays.sort(copy);
+
         return sumOfInts(Arrays.copyOf(copy, 3));
     }
 
@@ -28,7 +29,12 @@ public class ArrayOfInts {
     }
 
     public int sumOfXLargest(int[] arrayOfInts, int x) {
-        return 0;
+        if (arrayOfInts == null) return 0;
+//        if (x > arrayOfInts.length) x = arrayOfInts.length;
+        int[] copy = Arrays.copyOf(arrayOfInts, arrayOfInts.length);
+        Arrays.sort(copy);
+
+        return sumOfInts(Arrays.copyOfRange(copy,Math.max(0,copy.length-x), copy.length ));
     }
 
     public static void main(String[] args) {
